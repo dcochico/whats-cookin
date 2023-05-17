@@ -3,6 +3,8 @@ import {calculateCost, determineIngredientNames, returnInstructions} from './rec
 
 //Query Selectors
 const mainRecipe = document.querySelector('.main-recipe');
+const nav = document.querySelector('nav');
+const mainPanel = document.querySelector('.main-panel');
 let testBox;
 
 
@@ -44,5 +46,7 @@ export {
   viewRecipeInfo, 
   mainRecipe, 
   testBox, 
-  displayRecipeInfo
+  displayRecipeInfo,
+  nav,
+  mainPanel
 }

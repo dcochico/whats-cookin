@@ -6,7 +6,7 @@ import './styles.css'
 import './images/turing-logo.png'
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {viewAllRecipes, viewRecipeInfo, displayRecipeInfo, mainRecipe} from './domUpdates.js'
+import {viewAllRecipes, viewRecipeInfo, displayRecipeInfo, mainRecipe, mainPanel, nav} from './domUpdates.js'
 
 
 
@@ -14,8 +14,20 @@ import {viewAllRecipes, viewRecipeInfo, displayRecipeInfo, mainRecipe} from './d
 // Event Listeners
 window.addEventListener('load', viewAllRecipes);
 mainRecipe.addEventListener('click', (e) => {
-  console.log(e.target)
+  console.log(e.target, 'recipe')
   viewRecipeInfo(e)
   displayRecipeInfo()
+ 
+})
+
+nav.addEventListener('click', (e) => {
+  console.log(e.target, 'panel')
+
+ 
+})
+
+mainPanel.addEventListener('click', (e) => {
+  console.log(e.target, 'nav')
+
  
 })
