@@ -9,7 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #d2afff;
-  position: fixed;
+  position: fixed; 
 };
 
 nav {
@@ -74,17 +74,12 @@ main {
   word-wrap: break-word;
   opacity: 75%;
   border-radius: 9%;
-  padding-left: 5%
-};
-
-.recipe-image { 
-  object-fit: contain;
-  height: 100%;
-  width: 100%;
-  filter: opacity(65%);
+  padding-left: 5%;
+  -webkit-user-drag: none;
 };
 
 .recipe-img {
+  -webkit-user-drag: none;
   border-radius: 9%;
   height: 40vh;
   width: 40vw;
@@ -121,11 +116,13 @@ main {
   text-align: center;
   background-color: #C7B6DC;  
   visibility: visible;
-  border-radius: 3%;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute; 
-  transform: translate(-10%, -15%);
+  transform: translate(-10%, -9%);
+  border: 4px solid purple;
 };
 
 .tags-panel::-webkit-scrollbar, .recipeInfo::-webkit-scrollbar, .main-panel::-webkit-scrollbar {
@@ -165,6 +162,10 @@ main {
   cursor: grab;
 };
 
+.recipe-container:hover {
+  transform: scale(1.1);
+}
+
 .tag:hover, .info-button:hover, .submit-button:hover, .favorite-button:hover, .home-button:hover {
   transform: scale(1.3);
   background-color: #d2afff;
@@ -177,7 +178,7 @@ main {
 
 .chef-hat:hover { 
   animation: spin .8s infinite;
-  cursor: cell;
+  cursor: wait;
 };
 
 @keyframes shimmy {
@@ -188,7 +189,7 @@ main {
 
 .user-gif:hover {
   animation: shimmy .8s infinite;
-  cursor: cell;
+  cursor: wait;
 };
 
 #search-bar{
@@ -197,6 +198,7 @@ main {
   border-radius: 9%;
   margin-left: 3%;
   margin-right: 3%;
+  text-align: center;
 };
 
 .submit-button, .favorite-button, .home-button {
@@ -232,9 +234,11 @@ h1, h2 {
   width: 8vw;
   margin-left: 5%;
   margin-right: 5%;
+  -webkit-user-drag: none;
 };
 
 .user-gif {
+  -webkit-user-drag: none;
   height: 65%;
   width: 55%;
   border-radius: 85%;
@@ -242,6 +246,7 @@ h1, h2 {
 };
 
 .box{
+  -webkit-user-drag: none;
   width: 29vh;
   height: 10vw;
   border-radius: 5%;
