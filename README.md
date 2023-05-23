@@ -50,7 +50,7 @@ This is an application to track recipes/meal planning that allows users to view 
 - The user can add/remove favorite recipes.
 ![](https://user-images.githubusercontent.com/126428377/239834042-8f636bee-8241-4d0e-bdae-7eca2c72f3a1.gif)
 - Design is responsive across small, medium, and large breakpoints.
-![](https://user-images.githubusercontent.com/126428377/239834943-12d7cdee-0243-4272-b54a-5981681b077c.gif)
+![](https://user-images.githubusercontent.com/126428377/240078646-b7d653d8-b821-43ad-9b53-6a395063470f.gif)
 - On load, a user is chosen at random.
 ![](https://user-images.githubusercontent.com/126428377/239835784-28a4545b-0fb0-4380-9e17-09dbf1880799.gif)
 
