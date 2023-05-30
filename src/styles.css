@@ -59,7 +59,7 @@ main {
   color: #321e36;
   word-wrap: break-word;
   background-color: #e1c4ff;
-  opacity: 75%;
+  /* opacity: 75%; */
   border-radius: 9%;
   padding-left: 5%
 };
