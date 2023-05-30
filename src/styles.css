@@ -129,15 +129,15 @@ main {
 
    .tags-panel::-webkit-scrollbar, .recipeInfo::-webkit-scrollbar, .main-panel::-webkit-scrollbar {
   width: 2vw;
-  border-radius: 50%;
-  background-color:#e6d7ff;
+  background-color:#e1c4ff;
    background-size: 27.5vh;
  };  
 
   .tags-panel::-webkit-scrollbar-thumb, .recipeInfo::-webkit-scrollbar-thumb, .main-panel::-webkit-scrollbar-thumb {
   width: 5vw;
+   border-radius: 10%;
   background-size: 20.5vh;
-  background-color:#e1c4ff;
+  background-color:rgb(21, 89, 110);
 }; 
 
 .tags-panel::-webkit-scrollbar-button, .recipeInfo::-webkit-scrollbar-button, .main-panel::-webkit-scrollbar-button {
@@ -186,6 +186,7 @@ main {
 
 .user-gif:hover {
   animation: shimmy .8s infinite;
+  /* cursor: cell; */
 };
 
 #search-bar{
