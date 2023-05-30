@@ -59,7 +59,6 @@ main {
   color: #321e36;
   word-wrap: break-word;
   background-color: #e1c4ff;
-  /* opacity: 75%; */
   border-radius: 9%;
   padding-left: 5%
 };
@@ -177,7 +176,6 @@ main {
 
 .chef-hat:hover { 
   animation: spin .8s infinite;
-  cursor: cell;
 };
 
 @keyframes shimmy {
@@ -188,7 +186,6 @@ main {
 
 .user-gif:hover {
   animation: shimmy .8s infinite;
-  cursor: cell;
 };
 
 #search-bar{
