@@ -78,30 +78,25 @@ const exitPopUp = recipes => {
   loadHearts(recipesToCook);
 };
 
-const filterRecipeByTag = (e, recipes) => {
+const selectFilter = (e, type, recipes) => {
   page.mode === 'home' ? recipes : recipes = recipesToCook;
-  let filteredRecipes = filterByTag(e.target.id, recipes);
+  let filteredRecipes;
+  type === 'tag' ? filteredRecipes = filterByTag(e.target.id, recipes) : filteredRecipes = filterByName(e, recipes);
   if (filteredRecipes.length) {
     viewAllRecipes(filteredRecipes);
     loadHearts(filteredRecipes);
   } else {
-    mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
+    mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`;
   }
-};
+}
+
+const filterRecipeByTag = (e, recipes) => selectFilter(e, 'tag', recipes);
 
 const searchRecipe = recipes => {
   mainPanel.innerHTML = '';
-  page.mode === 'home' ? recipes : recipes = recipesToCook;
   let name = userInput.value.toLowerCase();
-  let filteredRecipes = filterByName(name, recipes);
-  if (filteredRecipes.length) {
-    viewAllRecipes(filteredRecipes);
-    loadHearts(filteredRecipes);
-  } else {
-    mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
-  }
+  selectFilter(name, 'name', recipes);
 };
-
 
 const displaySearchError = () => {
   if(!userInput.value) {
