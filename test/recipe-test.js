@@ -5,6 +5,7 @@ import { filterByTag, filterByName, determineIngredientNames, calculateCost, ret
 describe('', () => {
   let recipeInfo;
   let ingredientData;
+  let result;
 
   beforeEach(() => {
     recipeInfo =  {
@@ -20,13 +21,25 @@ describe('', () => {
   
   describe('filterByTag', () => {
     it('Should return recipe filtered by given tag', () => {
-      const result = filterByTag("antipasti", recipeTestData);
+       result = filterByTag("antipasti", recipeTestData);
       expect(result).to.deep.equal([recipeInfo]);
     });
     it('Should return error message if no results are found', () => {
-      const result = filterByTag("late night snack", recipeTestData);
+       result = filterByTag("late night snack", recipeTestData);
       expect(result).to.deep.equal([]);
     });
+    it('Should return error message if a number is passed in' , () => {
+       result = filterByTag(897984656, recipeTestData);
+      expect(result).to.deep.equal([]);
+    })
+    it('Should return error message if nothing is passed in' , () => {
+      const result = filterByTag(null, recipeTestData);
+      expect(result).to.deep.equal([]);
+    })
+    it('Should return error message if a symbol is passed in' , () => {
+      const result = filterByTag('$%#@$##%', recipeTestData);
+      expect(result).to.deep.equal([]);
+    })
   });
 
   describe('filterByName', () => {
@@ -38,6 +51,18 @@ describe('', () => {
       const result = filterByName("Loaded Nacho Pizza Pudding Pops", recipeTestData);
       expect(result).to.deep.equal([]);
     });
+    it('Should return error message if a number is passed in' , () => {
+      const result = filterByName(897984656, recipeTestData);
+      expect(result).to.deep.equal([]);
+    })
+    it('Should return error message if nothing is passed in' , () => {
+     result = filterByName(null, recipeTestData);
+      expect(result).to.deep.equal([]);
+    })
+    it('Should return error message if a symbol is passed in' , () => {
+      const result = filterByName('$%#@$##%', recipeTestData);
+      expect(result).to.deep.equal([]);
+    })
   }); 
     
   describe('determineIngredientNames', () => {
@@ -52,6 +77,10 @@ describe('', () => {
       const findIngredients = determineIngredientNames(recipeTestData, ingredientTestData, "Loaded Nacho Pizza Pudding Pops");
       expect(findIngredients).to.equal("No recipes found");
     });
+    it('Should return error message if recipe does not exist', () => {
+      const findIngredients = determineIngredientNames(recipeTestData, ingredientTestData, null);
+      expect(findIngredients).to.equal("No recipes found");
+    });
   });
     
   describe('calculateCost', () => {
@@ -64,6 +93,14 @@ describe('', () => {
     });
     it(`should return error message if ingredient id does not exist`, () => {
       const totalCost = calculateCost({ingredients: [{id: -3}] }, ingredientTestData);
+      expect(totalCost).to.equal("Ingredient not found");
+    });
+    it(`should return error message if ingredient name does not exist`, () => {
+      const totalCost = calculateCost({ingredients: [{name: "vitamins"}] }, ingredientTestData);
+      expect(totalCost).to.equal("Ingredient not found");
+    });
+    it(`should return error message if ingredient cost does not exist`, () => {
+      const totalCost = calculateCost({ingredients: [{estimatedCostInCents: null}] }, ingredientTestData);
       expect(totalCost).to.equal("Ingredient not found");
     });
   });
@@ -98,6 +135,10 @@ describe('', () => {
     });
     it('Should return an error if the ID doesn\'t exist in the data set', () => {
       const toggle = toggleRecipesToCook(-3, recipeTestData);
+      expect(toggle).to.equal('Recipe not found');
+    });
+    it('Should return an error if the ID doesn\'t exist in the data set', () => {
+      const toggle = toggleRecipesToCook(null, recipeTestData);
       expect(toggle).to.equal('Recipe not found');
     });
   });
