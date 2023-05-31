@@ -7,7 +7,7 @@ import './images/avatar.gif';
 import './images/red-heart.png';
 import './images/black-heart.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { homeButton, favoriteButton, searchButton, mainPanel, tagsPanel, recipeInfo, loadUsers, loadTags, viewAllRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, displaySearchError, toggleHearts, loadHearts, viewHome, viewSaved } from './domUpdates.js';
+import { homeButton, favoriteButton, searchButton, mainPanel, tagsPanel, recipeInfo, loadUsers, loadTags, viewAllRecipes, viewFeaturedRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, displaySearchError, toggleHearts, loadHearts, viewHome, viewSaved } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
       ingredients = data[2].ingredients;
       loadUsers(users);
       loadTags(recipes);
-      viewAllRecipes(recipes);
+      viewFeaturedRecipes(recipes);
     });
 });
 

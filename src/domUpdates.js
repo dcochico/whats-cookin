@@ -18,6 +18,7 @@ const getRandomIndex = array => Math.floor(Math.random() * array.length);
 const loadUsers = userData => user.innerText = userData[getRandomIndex(userData)].name;
 
 const loadTags = recipes => {
+  recipes.forEach(recipe => recipe.tags.unshift('all'));
   let allTags = recipes.reduce((total, recipe) => [...total, ...recipe.tags], [])
   allTags = allTags.filter((tag, i) => allTags.indexOf(tag) === i);
   allTags.forEach(tag => tagsPanel.innerHTML += `<button class="tag" id="${tag}">${tag.toUpperCase()}</button>`);
@@ -49,6 +50,27 @@ const viewAllRecipes = recipes => {
   mainPanel.innerHTML = '';
   recipes.forEach(recipe => viewRecipe(recipe));
 };
+
+const featureRecipe = (tag, recipes) => {
+  let day = new Date().getDate();
+  let filteredRecipes = filterByTag(tag, recipes);
+  let recipeIndex = (day - 1) % filteredRecipes.length;
+  let recipeOfTheDay = filteredRecipes[recipeIndex];
+  recipeOfTheDay.tags.unshift('featured');
+  return recipeOfTheDay;
+}
+
+const viewFeaturedRecipes = recipes => {
+  let featuredRecipes = [featureRecipe('appetizer', recipes), featureRecipe('main dish', recipes), featureRecipe('side dish', recipes)];
+  viewAllRecipes(featuredRecipes);
+  mainPanel.insertAdjacentHTML('beforeend', `
+  <section class='recipe-container box'>
+    <h3>Appetizer of the Day</h3>
+    <h3>Main Dish of the Day</h3>
+    <h3>Side Dish of the Day</h3>
+  </section>
+  `)
+}
 
 const viewRecipeInfo = (recipes, ingredients, e) => {
   if (e.target.classList.contains('box')) {
@@ -158,6 +180,7 @@ export {
   toggleMode,
   viewRecipe,
   viewAllRecipes,
+  viewFeaturedRecipes,
   viewRecipeInfo,
   exitPopUp,
   filterRecipeByTag,
