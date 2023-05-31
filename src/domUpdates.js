@@ -37,10 +37,10 @@ const toggleMode = mode => {
 const viewRecipe = recipe => {
   mainPanel.innerHTML += `
   <section class='recipe-container box' id='${recipe.id}'>
-    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='${recipe.name}'>
+    <img class='box' id='${recipe.id}' src='${recipe.image}' alt='image not found'>
     <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
-    <img class='heart' id='unsaved-${recipe.id}' src='./images/black-heart.png' alt='unsave ${recipe.name}'>
-    <img class='heart hidden' id='saved-${recipe.id}' src='./images/red-heart.png' alt='save ${recipe.name}'>
+    <img class='heart' id='unsaved-${recipe.id}' src='./images/black-heart.png' alt='black heart'>
+    <img class='heart hidden' id='saved-${recipe.id}' src='./images/red-heart.png' alt='red heart'>
   </section>
   `;
 };

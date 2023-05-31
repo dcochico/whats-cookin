@@ -49,6 +49,20 @@ main {
   border: 0%;
 };
 
+.recipe-name {
+  position: absolute;
+  top: 60%;
+  width: 8em;
+  left: 9%;
+  transform: translate(-10%, -15%);
+  font-weight: bold;
+  color: #321e36;
+  word-wrap: break-word;
+  background-color: #e1c4ff;
+  border-radius: 9%;
+  padding-left: 5%
+};
+
 .heart {
   position: absolute;
   top: 60%;
@@ -111,17 +125,17 @@ main {
 };
 
 .tags-panel::-webkit-scrollbar, .recipeInfo::-webkit-scrollbar, .main-panel::-webkit-scrollbar {
-  width: 5vw;
-  background-image: url('./images/lilacs.png');
+  width: 2vw;
+  background-color:#e1c4ff;
   background-size: 27.5vh;
-};
+ };  
 
 .tags-panel::-webkit-scrollbar-thumb, .recipeInfo::-webkit-scrollbar-thumb, .main-panel::-webkit-scrollbar-thumb {
   width: 5vw;
-  border-radius: 100%;
+  border-radius: 10%;
   background-size: 20.5vh;
-  background-image: url('./images/sunflowers.png');
-};
+  background-color:rgb(21, 89, 110);
+}; 
 
 .tags-panel::-webkit-scrollbar-button, .recipeInfo::-webkit-scrollbar-button, .main-panel::-webkit-scrollbar-button {
   visibility: hidden;
@@ -160,7 +174,6 @@ main {
 
 .chef-hat:hover { 
   animation: spin .8s infinite;
-  cursor: wait;
 };
 
 @keyframes shimmy {
@@ -171,7 +184,6 @@ main {
 
 .user-gif:hover {
   animation: shimmy .8s infinite;
-  cursor: wait;
 };
 
 #search-bar{
@@ -228,19 +240,6 @@ main {
 
 .hidden {
   display: none;
-};
-
-.recipe-name {
-  position: absolute;
-  top: 60%;
-  left: 9%;
-  font-weight: bold;
-  color: #321e36;
-  word-wrap: break-word;
-  background-color: #e1c4ff;
-  opacity: 75%;
-  border-radius: 9%;
-  padding-left: 5%
 };
 
 h1, h2 {
