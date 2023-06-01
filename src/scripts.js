@@ -1,13 +1,13 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 import './styles.css';
-import { savePromises } from './apiCalls';
+import { savePromises, postAPI } from './apiCalls';
 import './images/turing-logo.png';
 import './images/chef-hat.png';
 import './images/avatar.gif';
 import './images/red-heart.png';
 import './images/black-heart.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { homeButton, favoriteButton, searchButton, mainPanel, tagsPanel, recipeInfo, loadUsers, loadTags, viewAllRecipes, viewFeaturedRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, displaySearchError, toggleHearts, loadHearts, viewHome, viewSaved } from './domUpdates.js';
+import { homeButton, favoriteButton, searchButton, mainPanel, tagsPanel, recipeInfo, userID, loadUsers, loadTags, viewAllRecipes, viewFeaturedRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, displaySearchError, toggleHearts, loadHearts, viewHome, viewSaved } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -32,6 +32,7 @@ mainPanel.addEventListener('click', e => {
   } else if (e.target.classList.contains('heart')) {
     toggleRecipesToCook(e.target.parentNode.id, recipes);
     toggleHearts(e, recipes);
+    postAPI(userID, e.target.parentNode.id);
   } else {
     viewRecipeInfo(recipes, ingredients, e);
   };
