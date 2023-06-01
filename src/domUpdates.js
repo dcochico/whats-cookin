@@ -11,11 +11,16 @@ const tagsPanel = document.querySelector('.tags-panel');
 const tags = document.querySelectorAll('.tag');
 let recipeInfo;
 let page = {mode: 'home'};
+let userID;
 
 // Event Handlers
 const getRandomIndex = array => Math.floor(Math.random() * array.length);
 
-const loadUsers = userData => user.innerText = userData[getRandomIndex(userData)].name;
+const loadUsers = userData => {
+  let userIndex = getRandomIndex(userData);
+  userID = userData[userIndex].id;
+  user.innerText = userData[userIndex].name;
+}
 
 const loadTags = recipes => {
   recipes.forEach(recipe => recipe.tags.unshift('all'));
@@ -174,6 +179,7 @@ export {
   tagsPanel,
   tags,
   recipeInfo,
+  userID,
   getRandomIndex,
   loadUsers,
   loadTags,
