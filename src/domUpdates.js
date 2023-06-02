@@ -135,6 +135,7 @@ const displaySearchError = () => {
     userInput.placeholder = 'Please Fill Out This Field'
     mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
   } 
+  homeButton.classList.toggle('hidden');
 };
 
 const toggleButtons = () => {
