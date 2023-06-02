@@ -1,4 +1,4 @@
-import { recipesToCook, filterByTag, filterByName, determineIngredientNames, calculateCost, returnInstructions } from './recipe.js';
+import { recipesToCook, filterByTag, filterByName, determineIngredientNames, calculateCost, returnInstructions, toggleRecipesToCook } from './recipe.js';
 
 // Global Variables
 const user = document.querySelector('.user');
@@ -16,9 +16,14 @@ let userID;
 // Event Handlers
 const getRandomIndex = array => Math.floor(Math.random() * array.length);
 
-const loadUsers = userData => {
+const loadUsers = (userData, recipes) => {
   let userIndex = getRandomIndex(userData);
   userID = userData[userIndex].id;
+  userData.forEach(user => {
+    if (user.id === userID) {
+      user.recipesToCook.forEach(id => toggleRecipesToCook(id, recipes))
+    }
+  })
   user.innerText = userData[userIndex].name;
 }
 
