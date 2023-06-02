@@ -10,14 +10,14 @@ const fetchAPI = type => {
 const savePromises = () => Promise.all([fetchAPI('users'), fetchAPI('recipes'), fetchAPI('ingredients')]);
 
 const postAPI = (userID, recipeID) => {
-fetch('http://localhost:3001/api/v1/usersRecipes', {
+  fetch('http://localhost:3001/api/v1/usersRecipes', {
     method: 'POST',
     body: JSON.stringify({ userID: userID, recipeID: recipeID }),
     headers: { 'Content-Type': 'application/json' }
   })
-    .then(response => response.json())
-    .then(json => !json.message ? toggleRecipesToCook(recipeID, recipes) : console.log(json.message))
-    .catch(err => alert('Server is down. Please try again later.'));
-    }
+  .then(response => response.json())
+  .then(json => console.log(json.message))
+  .catch(err => alert('Server is down. Please try again later.'));
+}
 
 export { savePromises, postAPI }

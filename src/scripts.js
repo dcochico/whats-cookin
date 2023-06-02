@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
       users = data[0].users;
       recipes = data[1].recipes;
       ingredients = data[2].ingredients;
-      loadUsers(users);
+      loadUsers(users, recipes);
       loadTags(recipes);
       viewFeaturedRecipes(recipes);
     });
