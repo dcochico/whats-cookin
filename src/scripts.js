@@ -39,7 +39,11 @@ mainPanel.addEventListener('click', e => {
 });
 
 tagsPanel.addEventListener('click', e => {
-  if (!recipeInfo && e.target.classList.contains('tag')) {
+  if (e.target.id === 'featured'){
+     console.log('hey now')
+    viewFeaturedRecipes(recipes);
+    loadHearts(recipesToCook);
+  } else if (!recipeInfo && e.target.classList.contains('tag')) {
     filterRecipeByTag(e, recipes);
   }
 });

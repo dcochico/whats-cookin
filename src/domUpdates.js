@@ -45,7 +45,18 @@ const toggleMode = mode => {
   };
 };
 
-const viewRecipe = recipe => {
+const viewRecipe = (recipe, pass, theDay) => {
+  if (pass === 'passThrough') {
+    mainPanel.innerHTML += `
+    <section class='recipe-container box' id='${recipe.id}'>
+      <img class='box' id='${recipe.id}' src='${recipe.image}' alt='image not found'>
+      <h3 class='recipe-name' id="${recipe.id}">${recipe.name}</h3>
+      <img class='heart' id='unsaved-${recipe.id}' src='./images/black-heart.png' alt='black heart'>
+      <img class='heart hidden' id='saved-${recipe.id}' src='./images/red-heart.png' alt='red heart'>
+      <h3 class ='oftheday'>${theDay} OF THE DAY</h3>
+    </section>
+    `;
+  } else {
   mainPanel.innerHTML += `
   <section class='recipe-container box' id='${recipe.id}'>
     <img class='box' id='${recipe.id}' src='${recipe.image}' alt='image not found'>
@@ -53,12 +64,17 @@ const viewRecipe = recipe => {
     <img class='heart' id='unsaved-${recipe.id}' src='./images/black-heart.png' alt='black heart'>
     <img class='heart hidden' id='saved-${recipe.id}' src='./images/red-heart.png' alt='red heart'>
   </section>
-  `;
+  `;}
 };
 
-const viewAllRecipes = recipes => {
+const viewAllRecipes = (recipes, pass) => {
   mainPanel.innerHTML = '';
+  let ofTheDay = ['Appetizer', 'Main Dish', 'Side Dish']
+  if (pass === 'passThrough'){
+    recipes.forEach((recipe, i)=> viewRecipe(recipe, pass, ofTheDay[i]));
+  } else {
   recipes.forEach(recipe => viewRecipe(recipe));
+  }
 };
 
 const featureRecipe = (tag, recipes) => {
@@ -72,14 +88,7 @@ const featureRecipe = (tag, recipes) => {
 
 const viewFeaturedRecipes = recipes => {
   let featuredRecipes = [featureRecipe('appetizer', recipes), featureRecipe('main dish', recipes), featureRecipe('side dish', recipes)];
-  viewAllRecipes(featuredRecipes);
-  mainPanel.insertAdjacentHTML('beforeend', `
-  <section class='recipe-container box'>
-    <h3>Appetizer of the Day</h3>
-    <h3>Main Dish of the Day</h3>
-    <h3>Side Dish of the Day</h3>
-  </section>
-  `)
+  viewAllRecipes(featuredRecipes, 'passThrough');
 }
 
 const viewRecipeInfo = (recipes, ingredients, e) => {

@@ -40,7 +40,9 @@ main {
 };
 
 .recipe-container {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: .8vw;
   width: 16vw;
   height: 16vh;
@@ -61,6 +63,18 @@ main {
   background-color: #e1c4ff;
   border-radius: 9%;
   padding-left: 5%
+};
+
+.oftheday {
+  width: 8em;
+  font-weight: bold;
+  color: #321e36;
+  background-color: #b26aff;
+  padding-left: 27%;
+  padding-right: 21%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-radius: 8%;
 };
 
 .heart {
@@ -274,6 +288,10 @@ h1, h2 {
     font-size: 1.6vw;
     transform: translate(-10%, -60%);
   };
+  .oftheday {
+    width: 11em;
+    font-size: 1.6vw;
+  };
   .submit-button, .favorite-button, .home-button {
     font-size: 2vw;
   };
@@ -301,10 +319,14 @@ h1, h2 {
     margin-left: 3%;
     margin-right: 3%;
   }
-  .recipe-name {
+  .recipe-name{
     width: 10em;
     font-size: 1.4vw;
     transform: translate(-10%, -50%);
+  };
+  .oftheday {
+    width: 10em;
+    font-size: 1.4vw;
   };
   .submit-button, .favorite-button, .home-button {
     font-size: 1.5vw;
@@ -337,6 +359,10 @@ h1, h2 {
     width: 8em;
     font-size: .9vw;
     transform: translate(-10%, -20%);
+  };
+  .oftheday {
+    width: 8em;
+    font-size: .9vw;
   };
   .submit-button, .favorite-button, .home-button {
     font-size: 1vw;
