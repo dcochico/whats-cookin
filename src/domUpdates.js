@@ -46,7 +46,7 @@ const toggleMode = mode => {
 };
 
 const viewRecipe = (recipe, pass, theDay) => {
-  if (pass === 'passThrough') {
+  if (pass) {
     mainPanel.innerHTML += `
     <section class='recipe-container box' id='${recipe.id}'>
       <img class='box' id='${recipe.id}' src='${recipe.image}' alt='image not found'>
@@ -70,11 +70,7 @@ const viewRecipe = (recipe, pass, theDay) => {
 const viewAllRecipes = (recipes, pass) => {
   mainPanel.innerHTML = '';
   let ofTheDay = ['Appetizer', 'Main Dish', 'Side Dish']
-  if (pass === 'passThrough'){
-    recipes.forEach((recipe, i)=> viewRecipe(recipe, pass, ofTheDay[i]));
-  } else {
-  recipes.forEach(recipe => viewRecipe(recipe));
-  }
+  pass ? recipes.forEach((recipe, i)=> viewRecipe(recipe, pass, ofTheDay[i])) : recipes.forEach(recipe => viewRecipe(recipe));
 };
 
 const featureRecipe = (tag, recipes) => {
@@ -87,6 +83,7 @@ const featureRecipe = (tag, recipes) => {
 }
 
 const viewFeaturedRecipes = recipes => {
+  page.mode === 'home' ? recipes : recipes = recipesToCook;
   let featuredRecipes = [featureRecipe('appetizer', recipes), featureRecipe('main dish', recipes), featureRecipe('side dish', recipes)];
   viewAllRecipes(featuredRecipes, 'passThrough');
 }
@@ -119,24 +116,28 @@ const exitPopUp = recipes => {
   loadHearts(recipesToCook);
 };
 
-const selectFilter = (e, type, recipes) => {
+const selectFilter = (e, type, recipes, pass) => {
   page.mode === 'home' ? recipes : recipes = recipesToCook;
   let filteredRecipes;
   type === 'tag' ? filteredRecipes = filterByTag(e.target.id, recipes) : filteredRecipes = filterByName(e, recipes);
-  if (filteredRecipes.length) {
+  if (filteredRecipes.length && pass) {
+    viewAllRecipes(filteredRecipes, 'passThrough');
+    // loadHearts(filteredRecipes);
+  } else if (filteredRecipes.length) {
     viewAllRecipes(filteredRecipes);
-    loadHearts(filteredRecipes);
   } else {
     mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`;
   }
 }
 
-const filterRecipeByTag = (e, recipes) => selectFilter(e, 'tag', recipes);
+const filterRecipeByTag = (e, recipes, pass) => selectFilter(e, 'tag', recipes, pass);
 
 const searchRecipe = recipes => {
   mainPanel.innerHTML = '';
   let name = userInput.value.toLowerCase();
   selectFilter(name, 'name', recipes);
+  homeButton.classList.remove('hidden');
+  favoriteButton.classList.remove('hidden');
 };
 
 const displaySearchError = () => {
@@ -144,12 +145,6 @@ const displaySearchError = () => {
     userInput.placeholder = 'Please Fill Out This Field'
     mainPanel.innerHTML = `<p id='try-again-message'>No recipes found, please try again !</p>`
   } 
-  homeButton.classList.toggle('hidden');
-};
-
-const toggleButtons = () => {
-  homeButton.classList.toggle('hidden');
-  favoriteButton.classList.toggle('hidden');
 };
 
 const toggleHearts = (e, recipes) => {
@@ -176,12 +171,14 @@ const loadHearts = recipes => {
 
 const viewHome = () => {
   toggleMode('home');
-  toggleButtons();
+  homeButton.classList.add('hidden');
+  favoriteButton.classList.remove('hidden');
 };
 
 const viewSaved = () => {
   toggleMode('favorite');
-  toggleButtons();
+  homeButton.classList.remove('hidden');
+  favoriteButton.classList.add('hidden');
 };
 
 export {
@@ -194,6 +191,7 @@ export {
   tagsPanel,
   tags,
   recipeInfo,
+  page,
   userID,
   getRandomIndex,
   loadUsers,
@@ -207,7 +205,6 @@ export {
   filterRecipeByTag,
   searchRecipe, 
   displaySearchError,
-  toggleButtons,
   toggleHearts,
   loadHearts,
   viewHome,
