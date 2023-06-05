@@ -7,7 +7,7 @@ import './images/avatar.gif';
 import './images/red-heart.png';
 import './images/black-heart.png';
 import { recipesToCook, toggleRecipesToCook } from './recipe.js';
-import { homeButton, favoriteButton, searchButton, mainPanel, tagsPanel, recipeInfo, userID, loadUsers, loadTags, viewAllRecipes, viewFeaturedRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, displaySearchError, toggleHearts, loadHearts, viewHome, viewSaved } from './domUpdates.js';
+import { homeButton, favoriteButton, searchButton, mainPanel, tagsPanel, recipeInfo, page, userID, loadUsers, loadTags, viewAllRecipes, viewFeaturedRecipes, viewRecipeInfo, exitPopUp, filterRecipeByTag, searchRecipe, displaySearchError, toggleHearts, loadHearts, viewHome, viewSaved } from './domUpdates.js';
 
 let users;
 let recipes;
@@ -39,19 +39,19 @@ mainPanel.addEventListener('click', e => {
 });
 
 tagsPanel.addEventListener('click', e => {
-  if (e.target.id === 'featured'){
-     console.log('hey now')
-    viewFeaturedRecipes(recipes);
-    loadHearts(recipesToCook);
+  if (e.target.id === 'featured') {
+    filterRecipeByTag(e, recipes, 'passThrough');
   } else if (!recipeInfo && e.target.classList.contains('tag')) {
-    filterRecipeByTag(e, recipes);
+    filterRecipeByTag(e, recipes, null);
   }
+  loadHearts(recipesToCook);
 });
 
 searchButton.addEventListener('click', () => {
   if (!recipeInfo) {
     searchRecipe(recipes);
     displaySearchError(recipes);
+    loadHearts(recipesToCook);
   }
 });
 
