@@ -11,6 +11,10 @@ This is an application to track recipes/meal planning that allows users to view 
 - Run `npm install` to install project dependancies.
 - Run `npm start` in the terminal to see the HTML page
   - `Control + C` is the command to stop running the local server.
+- Additionally, clone down [this](https://github.com/turingschool-examples/whats-cookin-api) repo for the local server, and `cd` into it. Then run:<br>
+`npm install`<br>
+`npm start`<br>
+and run it in a separate tab in your terminal each time you run the app.
 
 ## GOALS 
 - Object/array prototype methods to manipulate data
